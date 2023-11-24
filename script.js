@@ -22,9 +22,12 @@ function reliableMultiply(a, b) {
       return primitiveMultiply(a, b);
     } catch(e) {
       if (!( e instanceof MultiplicatorUnitFailure))
-        throw "Multiplication error";
+        throw "Unknown Error, try again";
     } 
   }
 }
 
-console.log(reliableMultiply(8, 9));
+console.log(reliableMultiply(8, 8)); // 64
+console.log(reliableMultiply(4, 10)); // 40
+console.log(reliableMultiply(5, 5)); // 25
+console.log(reliableMultiply(8, "hi")); // NaN (cannot multiply a number and a string)
