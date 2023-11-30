@@ -17,15 +17,17 @@ function primitiveMultiply(a, b) {
 }
 
 function reliableMultiply(a, b) {
-  for (;;) {
-    try {
-      return primitiveMultiply(a, b);
-    } catch(Error) {
-      if (!( Error instanceof MultiplicatorUnitFailure))
-        throw "Unknown Error, try again";
-    } 
+    while (true) {
+      try {
+        return primitiveMultiply(a, b);
+      } catch (error) {
+        if (!(error instanceof MultiplicatorUnitFailure)) {
+          throw "Unknown error!";
+        }
+      }
+    }
   }
-}
+
 
 console.log(reliableMultiply(8, 8)); // 64
 console.log(reliableMultiply(4, 10)); // 40
